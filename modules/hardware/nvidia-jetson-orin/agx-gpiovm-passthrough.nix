@@ -16,11 +16,13 @@ in {
 
     ghaf.virtualization.microvm.gpiovm.extraModules = [
       {
+        /*
         microvm.devices = [
           {
             # GPIO passthrough uses a character device (/dev/vda). No need to specify?
           }
         ];
+        */
         microvm.kernelParams = [
           "rootwait"
           "root=/dev/vda"

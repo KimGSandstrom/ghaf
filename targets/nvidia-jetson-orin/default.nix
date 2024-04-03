@@ -21,6 +21,7 @@
   };
   nvidia-jetson-orin = som: variant: extraModules: let
     netvmExtraModules = [
+      /*
       {
         # The Nvidia Orin hardware dependent configuration is in
         # modules/hardware/nvidia-jetson-orin/jetson-orin.nx
@@ -34,6 +35,12 @@
         hardware.enableRedistributableFirmware = som == "agx";
         # Note: When 21.11 arrives replace the below statement with
         # wirelessRegulatoryDatabase = true;
+      }
+      */
+    ];
+    gpiovmExtraModules = [
+      {
+        # hardware modules for gpio
       }
     ];
     hostConfiguration = lib.nixosSystem {
@@ -75,6 +82,10 @@
 
               virtualization.microvm.netvm.enable = true;
               virtualization.microvm.netvm.extraModules = netvmExtraModules;
+
+              # for debug enable gpiovm
+              virtualization.microvm.gpiovm.enable = true;
+              virtualization.microvm.gpiovm.extraModules = gpiovmExtraModules;
 
               # Enable all the default UI applications
               profiles = {

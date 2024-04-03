@@ -1,6 +1,6 @@
 export MAKEOPTS="-j12"
 flake='.#nvidia-jetson-orin-agx-debug'
-echo "Do you want to build only or switch to a new nix flake? (b/s/t/r/n)"
+echo "Do you want to build only or switch to a new nix flake? (b/t/s/x/e/n)"
 if [ $# == '0' ]
   then read ans
   else ans=$1
@@ -11,15 +11,19 @@ case $ans in
     echo "Building a nix derivation..."
     nixos-rebuild --flake ${flake} build
     ;;
+  t|T)
+    echo "Testing a nix derivation..."
+    sudo nixos-rebuild --flake ${flake} switch
+    ;;
   s|S)
     echo "Switchng a nix derivation..."
     sudo nixos-rebuild --flake ${flake} switch
     ;;
-  t|T)
-    echo "Building a nix derivation..."
+  x|X)
+    echo "Traceing a nix derivation..."
     nixos-rebuild --flake ${flake} build --show-trace
     ;;
-  r|R)
+  e|E)
     echo "Evaluating to eval_${flake}.tmp"
     nix derivation show --recursive ${flake} > eval_${flake}.tmp 
     ;;
