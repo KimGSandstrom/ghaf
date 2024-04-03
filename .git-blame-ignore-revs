@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: 2022-2023 TII (SSRC) and the Ghaf contributors
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# To use this file when using git blame:
+#
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+#
+# or
+#
+#   git config --global blame.ignoreRevsFile .git-blame-ignore-revs
+
+# Fix formatting
+5cd87373b733683fa0181f183f7f6de9fdfefe09
+
+# Reformat .nix-files using alejandra
+24c820cace498a4e2e38979539eeb155471f19dd
+
+# Reformat .nix-files using alejandra
+b07a90ec8f9a0182b1a180b25175b96eac0af705

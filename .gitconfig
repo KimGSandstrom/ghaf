@@ -1,0 +1,20 @@
+[credential]
+	helper = cache --timeout=315360000
+[user]
+	name = Kim Sandström
+	email = kim.sandstrom@unikie.com
+	signingkey = /home/kisandst/.ssh/id_ed25519
+[gpg]
+	format = ssh
+[remote]
+	default = github
+[push]
+	gpgSign = if-asked
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true
+[core]
+	sshCommand = ssh -i ~/.ssh/id_ed25519
+[safe]
+	directory = /home/kisandst/software/ghaf/
