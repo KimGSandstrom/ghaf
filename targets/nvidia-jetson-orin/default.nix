@@ -62,16 +62,24 @@
                 enable = true;
                 somType = som;
 
-                agx.enableNetvmWlanPCIPassthrough = som == "agx";
-                nx.enableNetvmEthernetPCIPassthrough = som == "nx";
+                # removed for gpio passthrough debugging
+                # agx.enableNetvmWlanPCIPassthrough = som == "agx";
+                # nx.enableNetvmEthernetPCIPassthrough = som == "nx";
                 agx.enableGPIOPassthrough = som == "agx";
+
+                # removed for gpio passthrough debugging
+                agx.enableNetvmWlanPCIPassthrough = false;
+                nx.enableNetvmEthernetPCIPassthrough = false;
+
               };
 
               hardware.nvidia = {
                 virtualization.enable = true;
-                virtualization.host.bpmp.enable = true;
+                # virtualization.host.bpmp.enable = true;
+                virtualization.host.bpmp.enable = false;
                 virtualization.host.gpio.enable = true;
-                passthroughs.host.uarta.enable = true;
+                # passthroughs.host.uarta.enable = true;
+                passthroughs.host.uarta.enable = false;
               };
 
               virtualization.microvm-host.enable = true;

@@ -10,32 +10,6 @@
   configHost = config;
   vmName = "gpio-vm";
 
-  /*
-  utils = pkgs.env.system.posix.utilities;
-
-  # with utils {
-    #script = pkgs.buildPackages.bashPackages.devtools.mkDerivation rec {
-    script = pkgs.env.system.posix.utilitiesmkDerivation rec {
-      name = "simple-chardev-test";
-      src = "./simple-chardev-test.sh"; # bash script testing some gpio pins
-      buildInputs = ["sysfsutils"];
-      phases = {
-        install = (args) => {
-          self.installPhase = super.install();
-          runCommand "/usr/bin/chmod +x ${self.prefix}/${self.name}";
-        };
-      };
-    # };
-  };
-  scriptPath = "${script.out}/${script.name}"; # path to nix store
-  */
-  /*
-  script = pkgs.readFile ./simple-chardev-test.sh;
-  scriptPath = "${pkgs.writeText "script" script}";
-  */
-  # Import the service's nix script definition
-  script = import ./script.nix { pkgs = pkgs; };
-
   gpiovmBaseConfiguration = {
     imports = [
       # (import ./common/vm-networking.nix {inherit vmName macAddress;})
@@ -54,17 +28,7 @@
 
         microvm.hypervisor = "qemu";
 
-        microvm.services."gpiotest" = {
-          description = "A simple Nix-built service";
-          enable = true;
-          executeAs = "root";
-          startPrecondition = [ "networking" ];
-          startCommand = "bash ${script.gpioScript}";
-          restart = {
-            failuresBeforeAction = 3;
-            delaySec = 5;
-          };
-        };
+        # service.
         /*
         services.xxx = {
           enable = true;
@@ -95,9 +59,10 @@ in {
         List of additional modules to be imported and evaluated as part of
         GPIO-VM's NixOS configuration.
       '';
-      default = [];
+      default = [ import ./gpio-test.nix { pkgs = pkgs; } ];
     };
   };
+
 
   config = lib.mkIf cfg.enable {
     microvm.vms."${vmName}" = {
