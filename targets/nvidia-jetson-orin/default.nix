@@ -65,16 +65,13 @@
                 agx.enableNetvmWlanPCIPassthrough = som == "agx";
                 nx.enableNetvmEthernetPCIPassthrough = som == "nx";
                 agx.enableGPIOPassthrough = som == "agx";
-               
-                # tmp values for debug
-                # agx.enableNetvmWlanPCIPassthrough = false;
               };
 
               hardware.nvidia = {
                 virtualization.enable = true;
-                virtualization.host.bpmp.enable = false;
+                virtualization.host.bpmp.enable = true;
                 virtualization.host.gpio.enable = true;
-                passthroughs.host.uarta.enable = false;
+                passthroughs.host.uarta.enable = true;
               };
 
               virtualization.microvm-host.enable = true;

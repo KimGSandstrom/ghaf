@@ -21,17 +21,24 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [(import ./overlays/qemu)];
-
     ghaf.hardware.nvidia.virtualization.enable = true;
 
+    # in practice this configures both host and guest kernel becaue we use only one kernel in the whole system
     boot.kernelPatches = [
+      # removed, because we use overelay files
+      /*
+      {
+        name = "GPIO dtsfiles";
+        patch = ./patches/0007-gpio-host-gpio-dts.patch; # blob file patch
+      }
+      */
       {
         name = "GPIO virtualization host kernel configuration";
         patch = null;
-        extraStructuredConfig = with lib.kernel; {
-          VFIO_PLATFORM = yes;
-          TEGRA_GPIO_HOST_PROXY = yes;
+        extraStructuredConfig = {
+          VFIO_PLATFORM = lib.kernel.yes;
+          TEGRA_GPIO_HOST_PROXY = lib.kernel.yes;
+          TEGRA_GPIO_GUEST_PROXY = lib.kernel.yes;
         };
       }
     ];
@@ -54,11 +61,5 @@ in {
         }
       ];
     };
-
-    # TODO: Consider are these really needed, maybe add only in debug builds?
-    environment.systemPackages = with pkgs; [
-      qemu
-      dtc
-    ];
   };
 }
