@@ -28,8 +28,7 @@
 
         microvm.hypervisor = "qemu";
 
-        # service.
-        /*
+        /* add services in extraModules variable instead
         services.xxx = {
           enable = true;
         };
@@ -59,6 +58,7 @@ in {
         List of additional modules to be imported and evaluated as part of
         GPIO-VM's NixOS configuration.
       '';
+      # A service that runs a script to test gpio pins
       default = [ import ./gpio-test.nix { pkgs = pkgs; } ];
     };
   };
