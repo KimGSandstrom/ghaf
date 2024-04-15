@@ -257,7 +257,7 @@ To see all Ghaf-supported outputs, type <code>nix flake show</code>.</li>
 <p>Run the command:</p>
 <pre><code>nix build github:tiiuae/ghaf#nvidia-jetson-orin-agx-debug-flash-script
 </code></pre>
-<p>It will build the Ghaf image and bootloader firmware, and prepare the flashing script. Give "yes" answers to all script questions. The building process takes around 1,5 hours.</p>
+<p>It will build the Ghaf image and bootloader firmware, and prepare the flashing script. Give &quot;yes&quot; answers to all script questions. The building process takes around 1,5 hours.</p>
 </li>
 <li>
 <p>Set up the following connections:</p>
@@ -277,7 +277,7 @@ To see all Ghaf-supported outputs, type <code>nix flake show</code>.</li>
 <p>Run the flashing script:</p>
 <pre><code>sudo ~/result/bin/flash-ghaf-host
 </code></pre>
-<p>There is a time-out for this operation, so run the script within one minute after putting the device in recovery mode. If you got the error message "ERROR: might be timeout in USB write.":</p>
+<p>There is a time-out for this operation, so run the script within one minute after putting the device in recovery mode. If you got the error message &quot;ERROR: might be timeout in USB write.&quot;:</p>
 <ol>
 <li>Reboot the device and put it in recovery mode again.</li>
 <li>Check with the <code>lsusb</code> command if your computer can still recognize the board, and run the flash script again.</li>
@@ -352,7 +352,7 @@ $ sudo dd if=result/ shared.disk-image.img of=/dev/&lt;SDCARD&gt;
 <p>Before you begin:</p>
 <ul>
 <li>Check device-independent <a href="./build_and_run.html#prerequisites">prerequisites</a>.</li>
-<li>Make sure HSS version 0.99.35-v2023.02 is programmed in your board eNVM. The version can be seen in the pre-bootloader log. Check the video guide to build HSS and program the eNVM: <a href="https://www.youtube.com/watch?v=McAt2-6cwd4">How to build HSS and program the eNVM?</a></li>
+<li>Make sure HSS version 0.99.35-v2023.02 is programmed in your board eNVM. The version can be seen in the pre-bootloader log. Check the video guide to build HSS and program the eNVM: <a href="https://www.youtube.com/watch?v=McAt2-6cwd4">How to build HSS and program the eNVM?</a> </li>
 </ul>
 <p>In the case of the Icicle Kit, Ghaf deployment consists of creating an SD image with U-Boot and Linux kernel from Microchip, and Ghaf-based NixOS rootfs:</p>
 <ol>
