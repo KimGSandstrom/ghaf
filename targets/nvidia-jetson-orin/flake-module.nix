@@ -101,6 +101,8 @@ let
                 };
               };
 
+              host.networking.enable = true;
+
               # Enable all the default UI applications
               profiles = {
                 applications.enable = true;
